@@ -5,11 +5,13 @@ import {
 } from 'react-icons/fa';
 import { BsCheckCircleFill, BsFlagFill, BsCalendarCheck } from 'react-icons/bs';
 import { AiFillFire } from 'react-icons/ai';
+import TaskDetailsModal from './TaskDetailsModal';
 
 function CommunityPage() {
   const [activeTab, setActiveTab] = useState('tasks');
   const [createTaskModal, setCreateTaskModal] = useState(false);
   const [taskFilter, setTaskFilter] = useState('all');
+  const [selectedTask, setSelectedTask] = useState(null);
   
   // Mock community data
   const communityData = {
@@ -434,7 +436,10 @@ function CommunityPage() {
                       </span>
                     </div>
                     
-                    <button className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition">
+                    <button 
+                      className="bg-blue-600 text-white text-xs px-3 py-1 rounded hover:bg-blue-700 transition"
+                      onClick={() => setSelectedTask(task)}
+                    >
                       {task.status === 'Open' ? 'Take Task' : 'View Details'}
                     </button>
                   </div>
@@ -666,6 +671,15 @@ function CommunityPage() {
       
       {/* Create task modal */}
       {createTaskModal && <CreateTaskModal />}
+
+      {/* Task detail modal */}
+      {selectedTask && (
+        <TaskDetailsModal 
+          task={selectedTask} 
+          onClose={() => setSelectedTask(null)} 
+          userRole={communityData.userRole}
+        />
+      )}
     </div>
   );
 }
