@@ -4,10 +4,25 @@ import ProfilePage from './components/ProfilePage';
 import CommunityPage from './components/CommunityPage';
 import FeedPage from './components/FeedPage';
 import CommunityExplorerPage from './components/CommunityExplorerPage';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('feed'); // Default to feed/home page
-  
+  const [currentPage, setCurrentPage] = useState('login'); // Default to login page
+  const [user, setUser] = useState(null);
+
+  const handleLogin = (userData) => {
+    console.log('User logged in:', userData);
+    setUser(userData);
+    setCurrentPage('feed'); // Automatically navigate to feed after login
+  };
+
+  const handleRegister = (userData) => {
+    console.log('User registered:', userData);
+    setUser(userData);
+    setCurrentPage('feed'); // Automatically navigate to feed after registration
+  };
+
   // Simple routing function
   const renderPage = () => {
     switch(currentPage) {
@@ -17,9 +32,15 @@ function App() {
         return <ProfilePage onNavigate={setCurrentPage} />;
       case 'explore':
         return <CommunityExplorerPage onNavigate={setCurrentPage} />;
+      case 'login':
+        return <LoginPage onLogin={handleLogin} onNavigate={setCurrentPage} />;
+      case 'register':
+        return <RegisterPage onRegister={handleRegister} onNavigate={setCurrentPage} />;
       case 'feed':
-      default:
         return <FeedPage onNavigate={setCurrentPage} />;
+      default:
+        // Default to login page
+        return <LoginPage onLogin={handleLogin} onNavigate={setCurrentPage} />;
     }
   };
 

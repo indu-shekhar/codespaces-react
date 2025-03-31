@@ -398,19 +398,32 @@ function FeedPage({ onNavigate }) {
                 )}
               </div>
               
-              <button 
-                className="ml-2 flex items-center gap-2"
-                onClick={() => onNavigate('profile')}
-              >
-                <img 
-                  src={userData.avatar} 
-                  alt={userData.name} 
-                  className="w-8 h-8 rounded-full border"
-                />
-                <span className="text-sm font-medium text-gray-700 hidden md:block">
-                  {userData.name}
-                </span>
-              </button>
+              <div className="flex items-center">
+                <button 
+                  className="ml-2 flex items-center gap-2"
+                  onClick={() => onNavigate('profile')}
+                >
+                  <img 
+                    src={userData.avatar} 
+                    alt={userData.name} 
+                    className="w-8 h-8 rounded-full border"
+                  />
+                  <span className="text-sm font-medium text-gray-700 hidden md:block">
+                    {userData.name}
+                  </span>
+                </button>
+                
+                {/* Add logout button */}
+                <button 
+                  className="ml-2 p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full"
+                  onClick={() => onNavigate('login')}
+                  title="Logout"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1H3zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
