@@ -46,6 +46,10 @@ function ProfilePage() {
     setIsEditing(false);
   };
 
+  const onNavigate = (destination) => {
+    console.log(`Navigating to ${destination}`);
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header with user info */}
@@ -227,8 +231,11 @@ function ProfilePage() {
                     </div>
                   ))}
                 </div>
-                <button className="mt-4 w-full py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition">
-                  Explore More Communities
+                <button 
+                  className="mt-4 text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                  onClick={() => onNavigate('explore')}
+                >
+                  Explore Communities
                 </button>
               </div>
               
@@ -301,7 +308,10 @@ function ProfilePage() {
                 <FaUsers size={24} className="text-gray-400 mb-2" />
                 <h3 className="font-medium text-gray-600">Join New Community</h3>
                 <p className="text-gray-500 text-sm text-center mt-1">Discover communities that match your interests</p>
-                <button className="mt-4 text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                <button 
+                  className="mt-4 text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                  onClick={() => onNavigate('explore')}
+                >
                   Explore Communities
                 </button>
               </div>
